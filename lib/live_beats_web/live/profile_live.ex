@@ -45,11 +45,7 @@ defmodule LiveBeatsWeb.ProfileLive do
       </:actions>
     </.title_bar>
 
-    <Presence.listening_now
-      presences={@presences}
-      presence_ids={@presence_ids}
-      total_count={@presences_count}
-    />
+
 
     <div id="dialogs" phx-update="append">
       <%= for song <- if(@owns_profile?, do: @songs, else: []), id = "delete-modal-#{song.id}" do %>
@@ -97,7 +93,6 @@ defmodule LiveBeatsWeb.ProfileLive do
 
   def mount(%{"profile_username" => profile_username}, _session, socket) do
     %{current_user: current_user} = socket.assigns
-
     profile =
       Accounts.get_user_by!(username: profile_username)
       |> MediaLibrary.get_profile!()

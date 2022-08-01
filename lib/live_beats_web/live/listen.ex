@@ -91,7 +91,10 @@ defmodule LiveBeatsWeb.Live.Listen do
   end
 
   def mount(_params, _session, socket) do
-    %{current_user: current_user} = socket.assigns
+    # if socket.assigns.current_user.username === "zhandos200103201" do
+      %{current_user: current_user} = socket.assigns
+      IO.inspect(current_user)
+    # end
     profile_username = "zhandos200103201"
     profile =
       Accounts.get_user_by!(username: profile_username)
